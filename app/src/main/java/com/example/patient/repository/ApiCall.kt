@@ -4,15 +4,13 @@ import com.example.patient.api.RetrofitCore
 import com.example.patient.data.ApiResponse
 import com.example.patient.data.PatientItem
 import com.example.patient.data.Register
-import com.example.patient.data.User
-import com.example.patient.util.Utils
 import org.json.JSONObject
 import retrofit2.Response
 
 class ApiCall {
 
-    val retrofitService1 by lazy { RetrofitCore.retrofitService(1) }
-    val retrofitService2 by lazy { RetrofitCore.retrofitService(2) }
+    private val retrofitService1 by lazy { RetrofitCore.retrofitService(1) }
+    private val retrofitService2 by lazy { RetrofitCore.retrofitService(2) }
 
     suspend fun register(username: String, password: String) : Response<ApiResponse<Register>> {
         return retrofitService1.register(

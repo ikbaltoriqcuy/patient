@@ -3,7 +3,6 @@ package com.example.patient.api
 import com.example.patient.data.ApiResponse
 import com.example.patient.data.PatientItem
 import com.example.patient.data.Register
-import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
@@ -40,6 +39,6 @@ interface ApiService {
         @Field("address") address: String,
     ): Response<JSONObject>
 
-    @GET("patients/{id}")
+    @DELETE("patients/{id}")
     suspend fun deletePatient(@Path("id") id:String): Response<JSONObject>
 }

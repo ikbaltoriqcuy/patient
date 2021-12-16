@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.patient.R
 import com.example.patient.base.BaseActivity
-import com.example.patient.data.User
 import com.example.patient.ui.dialog.ProgressDialog
 import com.example.patient.ui.home.HomeActivity
 import com.example.patient.ui.register.RegisterActivity

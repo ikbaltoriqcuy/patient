@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity() {
     private val homeViewmodel: HomeViewmodel by viewModel()
-    private lateinit var patientAdapter: PatientAdapter
+    private var patientAdapter: PatientAdapter? = null
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +36,18 @@ class HomeActivity : BaseActivity() {
         homeViewmodel.getAllPatient()
     }
 
-    fun setupList(data: List<PatientItem>) {
+    private fun setupList(data: List<PatientItem>) {
         patientAdapter = PatientAdapter(this@HomeActivity) { id ->
             progressDialog.show()
+            patientAdapter = null
             homeViewmodel.deletePatient(id)
         }
-        patientAdapter.data = data
+        patientAdapter?.data = data
         lstExpandable.setAdapter(patientAdapter)
-        patientAdapter.notifyDataSetChanged()
+        patientAdapter?.notifyDataSetChanged()
     }
 
-    fun setupObservable() {
+    private fun setupObservable() {
         homeViewmodel.responsePatients.observe(this@HomeActivity, {
             progressDialog.dismiss()
             setupList(it)
@@ -78,26 +79,28 @@ class HomeActivity : BaseActivity() {
             }
         })
         homeViewmodel.responseFailed.observe(this@HomeActivity, {
-            if (it == "failed")
-                progressDialog.show()
+            Toast.makeText(this@HomeActivity, it, Toast.LENGTH_SHORT).show()
+            progressDialog.dismiss()
         })
     }
 
-    fun setEvent() {
+    private fun setEvent() {
         btnAddPatient.setOnClickListener {
             progressDialog.show()
             homeViewmodel.addPatient()
         }
         btnSearch.setOnClickListener {
             progressDialog.show()
-            if (!lblId.text.toString().isEmpty()) {
+            if (lblId.text.toString().isNotEmpty()) {
                 homeViewmodel.searchPatient(lblId.text.toString())
             } else {
                 homeViewmodel.getAllPatient()
             }
         }
         btnLogin.setOnClickListener {
+            homeViewmodel.deleteUser()
             val intent = Intent(this@HomeActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
     }

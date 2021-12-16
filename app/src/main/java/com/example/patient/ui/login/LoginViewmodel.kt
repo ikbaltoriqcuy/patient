@@ -19,6 +19,13 @@ class LoginViewmodel : BaseViewmodel() {
                     val response = apiCall.login(username, password)
                     if (response.isSuccessful) {
                         //response success 200
+                        insertUser(
+                            User(
+                                "",
+                                username,
+                                password
+                            )
+                        )
                         responseLogin.value = true
                     } else {
                         //response success 400,500 etc

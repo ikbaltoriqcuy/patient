@@ -1,5 +1,6 @@
 package com.example.patient.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
@@ -28,7 +29,7 @@ class PatientAdapter(val context: Context, val onDelete:(String)->Unit) : BaseEx
     }
 
     override fun getGroup(groupPosition: Int): Any {
-        return data!!.get(groupPosition)
+        return data!![groupPosition]
     }
 
     override fun getChild(groupPosition: Int, childPosition: Int): Any {
@@ -47,27 +48,36 @@ class PatientAdapter(val context: Context, val onDelete:(String)->Unit) : BaseEx
         return true
     }
 
+    @SuppressLint("InflateParams")
     override fun getGroupView(
         groupPosition: Int,
         isExpanded: Boolean,
         convertView: View?,
         parent: ViewGroup?
     ): View {
-        var convertView = convertView
-        if (convertView == null) {
+        var view = convertView
+        if (view == null) {
             val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.group_item, null)
+            view = layoutInflater.inflate(R.layout.group_item, null)
         }
+
         val lblTitle = convertView?.findViewById<AppCompatTextView>(R.id.lblTitle)
-        val btnDelete = convertView?.findViewById<AppCompatImageView>(R.id.btnDelete)
+        val imgExpand = convertView?.findViewById<AppCompatImageView>(R.id.imgExpand)
+        val imgCollapse = convertView?.findViewById<AppCompatImageView>(R.id.imgCollpase)
+
+        if (isExpanded) {
+            imgExpand?.visibility = View.VISIBLE
+            imgCollapse?.visibility = View.GONE
+        } else {
+            imgExpand?.visibility = View.GONE
+            imgCollapse?.visibility = View.VISIBLE
+        }
 
         lblTitle?.text = data?.get(groupPosition)?.name
-        btnDelete?.setOnClickListener {
-            onDelete(data?.get(groupPosition)?.id.toString())
-        }
-        return convertView!!
+        return view!!
     }
 
+    @SuppressLint("InflateParams")
     override fun getChildView(
         groupPosition: Int,
         childPosition: Int,
@@ -75,10 +85,10 @@ class PatientAdapter(val context: Context, val onDelete:(String)->Unit) : BaseEx
         convertView: View?,
         parent: ViewGroup?
     ): View {
-        var convertView = convertView
-        if (convertView == null) {
+        var view = convertView
+        if (view == null) {
             val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.child_item, null)
+            view = layoutInflater.inflate(R.layout.child_item, null)
         }
         val lblTime = convertView?.findViewById<AppCompatTextView>(R.id.lblTime)
         val lblAddress = convertView?.findViewById<AppCompatTextView>(R.id.lblAddress)
@@ -89,6 +99,12 @@ class PatientAdapter(val context: Context, val onDelete:(String)->Unit) : BaseEx
         lblPhoneNumber?.text = data?.get(groupPosition)?.contact
         lblAddress?.text = data?.get(groupPosition)?.address_2
 
+        val btnDelete = convertView?.findViewById<AppCompatImageView>(R.id.btnDelete)
+        btnDelete?.setOnClickListener {
+            onDelete(data?.get(groupPosition)?.id.toString())
+        }
+
+
         Glide.with(context)
             .load(Uri.parse(data?.get(groupPosition)?.avatar))
             .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
@@ -96,7 +112,7 @@ class PatientAdapter(val context: Context, val onDelete:(String)->Unit) : BaseEx
             .error(R.drawable.ic_baseline_hourglass_empty_24)
             .into(imgAvatar!!)
 
-        return convertView!!
+        return view!!
     }
 
     override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {

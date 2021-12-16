@@ -46,7 +46,7 @@ class HomeViewmodel : BaseViewmodel() {
                         responsePatient.value = response.body()
                     } else {
                         //response success 400,500 etc
-                        responseFailed.value = "failed"
+                        responseFailed.value = "Data Not Found"
                     }
                 } catch (e:Exception) {
                     responseFailed.value = "failed"
@@ -109,5 +109,9 @@ class HomeViewmodel : BaseViewmodel() {
 
     fun getUser(): User? {
         return userRepository.get()
+    }
+
+    fun deleteUser() {
+        return userRepository.delete()
     }
 }

@@ -10,11 +10,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/lblTime"
+        style="@style/Font_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Font_1"
+        android:layout_marginTop="@dimen/value_8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDelete"
         tools:text="14:00" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -35,10 +36,23 @@
         app:layout_constraintTop_toBottomOf="@+id/lblAddress"
         tools:text="08645458454" />
 
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_baseline_delete_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgAvatar"
         android:layout_width="@dimen/value_64dp"
         android:layout_height="@dimen/value_64dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/lblPhoneNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

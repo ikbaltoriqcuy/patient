@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/drawable/bg_rounded_edit_text.xml" value="0.1685185185185185" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/activity_main.xml" value="0.2629558541266795" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/child_item.xml" value="0.1640625" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/group_item.xml" value="0.1640625" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/list_item.xml" value="0.22" />
+        <entry key="..\:/Users/thor/AndroidStudioProjects/patient/app/src/main/res/layout/progress_dialog.xml" value="0.1640625" />
+        <entry key="..\:/Users/thor/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/activity_list_item.xml" value="0.1640625" />
+        <entry key="..\:/Users/thor/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/list_content.xml" value="0.1640625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/EditText"
+            android:lines="1"
             android:inputType="textEmailAddress"
             android:hint="@string/txt_username" />
 
@@ -37,6 +38,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lblPassword"
             style="@style/EditText"
+            android:lines="1"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lblConfirmPassword"
             style="@style/EditText"
+            android:lines="1"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
